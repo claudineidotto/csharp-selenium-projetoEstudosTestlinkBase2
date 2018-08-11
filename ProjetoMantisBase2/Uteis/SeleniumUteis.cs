@@ -26,8 +26,14 @@ namespace ProjetoTestLinkBase2.Uteis
             //limpa o elemento 
             //preenche o elemento 
             WebDriverWait espera = new WebDriverWait(WebDriver.driver, TimeSpan.FromSeconds(10));
-            espera.Until(ExpectedConditions.ElementToBeClickable(elemento));
+        //    espera.Until(ExpectedConditions.ElementToBeClickable(elemento));
             elemento.Click();
+        }
+
+        public void EsperaElemento(IWebElement elemento) {
+            WebDriverWait espera = new WebDriverWait(WebDriver.driver, TimeSpan.FromSeconds(10));
+            espera.Until(ExpectedConditions.ElementToBeClickable(elemento));
+
         }
 
 

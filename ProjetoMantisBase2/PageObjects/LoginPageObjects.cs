@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using ProjetoTestLinkBase2.Uteis;
 using System;
@@ -12,51 +13,34 @@ namespace ProjetoTestLinkBase2.PageObjects
     public class LoginPageObjects : WebDriver
     {
         public LoginPageObjects() {
-            PageFactory.InitElements(driver, this);
         }
 
-
         #region Mapeamento
-        [FindsBy(How = How.Name, Using = "username")]
-        public IWebElement txtUsername { get; set; }
 
-        [FindsBy(How = How.Name, Using = "password")]
-        public IWebElement txtPassword{ get; set; }
+        public IWebElement txtLogin => driver.FindElement(By.Id("login"));
 
-        [FindsBy(How = How.ClassName, Using = "button")]
-        public IWebElement btnLogin { get; set; }
+        public IWebElement txtPassword => driver.FindElement(By.Name("tl_password"));
 
-        [FindsBy(How = How.XPath, Using = "//font")]
-        public IWebElement msgLoginErro { get; set; }
+        public IWebElement btnLogin => driver.FindElement(By.Name("login_submit"));
 
+        public IWebElement msgErroLogin => driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='New User?'])[1]/preceding::div[2]"));
         #endregion
 
         SeleniumUteis uteis = new SeleniumUteis();
 
-        public void preencheLogin(String username) {
-            uteis.preencheCampoInput(txtUsername, username);
-            
-        }
-
-        public void preencheSenha(String password) {
+        public void realizalogin(string username, string password) {
+            uteis.preencheCampoInput(txtLogin, username);
             uteis.preencheCampoInput(txtPassword, password);
-        }
-
-        public void clicaLogin (){
             uteis.ClicaBotao(btnLogin);
         }
-
-        public void verificaLoginFalha() {
-            string frasefalha = "Your account may be disabled or blocked or the username/password you entered is incorrect.";
-            msgLoginErro.Text.ToString();
-
-        }
-
-        public void verificaLoginSucesso()
+        public void VerificaAcessoPaginaLogin()
         {
-            
-            msgLoginErro.Text.ToString();
+            uteis.EsperaElemento(btnLogin);
 
         }
+        public void verificaLoginFalha() {
+            uteis.EsperaElemento(msgErroLogin);
+            Assert.AreEqual("Try again! Wrong login name or password!",msgErroLogin.Text);
+        }     
     }
 }
