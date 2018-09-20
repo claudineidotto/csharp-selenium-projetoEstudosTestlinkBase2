@@ -9,11 +9,11 @@ using ProjetoTestLinkBase2.PageObjects;
 
 namespace ProjetoTestLinkBase2
 {
-    
-  
+ 
+   // [Parallelizable(ParallelScope.All)]
     public class LoginTests : WebDriver
     {
-        [Category("Página Login "),Test]
+        [Category("Página Login"),Test]
         public void LoginFalha()
         {
              LoginPageObjects login = new LoginPageObjects();
@@ -22,13 +22,24 @@ namespace ProjetoTestLinkBase2
             login.verificaLoginFalha();
         }
 
-        [Category ("Página Login "),Test]  
+        [Category ("Página Login"),Test]  
         public void LoginSucesso()
         {    
                 LoginPageObjects login = new LoginPageObjects();
-                HomePagePageObjects myview = new HomePagePageObjects();
+                HomePagePageObjects homepage = new HomePagePageObjects();
                 login.realizalogin( ConfigurationManager.AppSettings["username"].ToString(), ConfigurationManager.AppSettings["password"].ToString());    
-                myview.verificaAcessoMyView();            
+                homepage.verificaAcessoMyView();            
+        }
+
+        [Category("Página Login"), Test]
+        public void Logout()
+        {
+            LoginPageObjects login = new LoginPageObjects();
+            HomePagePageObjects homepage = new HomePagePageObjects();
+            login.realizalogin(ConfigurationManager.AppSettings["username"].ToString(), ConfigurationManager.AppSettings["password"].ToString());
+            homepage.realizaLogout();
+            login.verificaLogout();
+            
         }
     }
 }
