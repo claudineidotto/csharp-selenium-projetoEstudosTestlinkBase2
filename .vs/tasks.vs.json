@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskName": "tarefa-ProjetoTestLinkBase2",
+      "appliesTo": "ProjetoTestLinkBase2/ProjetoTestLinkBase2.csproj",
+      "type": "msbuild"
+    }
+  ]
+}

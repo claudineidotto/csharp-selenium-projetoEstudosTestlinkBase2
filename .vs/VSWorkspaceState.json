@@ -2,9 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\packages",
-    "\\ProjetoMantisBase2",
-    "\\ProjetoMantisBase2\\Tests"
+    "\\ProjetoTestLinkBase2",
+    "\\TestResults"
   ],
-  "SelectedNode": "\\ProjetoMantisBase2\\Tests\\EspecificarCasosTeste.cs",
+  "SelectedNode": "\\ProjetoTestLinkBase2.sln",
   "PreviewInSolutionExplorer": false
 }
