@@ -19,17 +19,17 @@ namespace ProjetoTestLinkBase2.PageObjects
         }
 
         #region Mapeamento
-        public IWebElement abaUsuarios => driver.FindElement(By.LinkText("Ver Usuários"));
-        public IWebElement btnCriar => driver.FindElement(By.Name("doCreate"));
-        public IWebElement txtLogin => driver.FindElement(By.Name("login"));
-        public IWebElement txtNome => driver.FindElement(By.Name("firstName"));
-        public IWebElement txtSobrenome => driver.FindElement(By.Name("lastName"));
-        public IWebElement txtSenha => driver.FindElement(By.Id("password"));
-        public IWebElement txtEmail => driver.FindElement(By.Id("email"));
-        public IWebElement cbxPerfil => driver.FindElement(By.Name("rights_id"));
-        public IWebElement cbxLocalizacao => driver.FindElement(By.Name("locale"));
-        public IWebElement btnSalvar => driver.FindElement(By.Name("do_update"));
-        public IWebElement checkBox => driver.FindElement(By.Name("user_is_active"));
+        public IWebElement AbaUsuarios => driver.FindElement(By.LinkText("Ver Usuários"));
+        public IWebElement BtnCriar => driver.FindElement(By.Name("doCreate"));
+        public IWebElement TxtLogin => driver.FindElement(By.Name("login"));
+        public IWebElement TxtNome => driver.FindElement(By.Name("firstName"));
+        public IWebElement TxtSobrenome => driver.FindElement(By.Name("lastName"));
+        public IWebElement TxtSenha => driver.FindElement(By.Id("password"));
+        public IWebElement TxtEmail => driver.FindElement(By.Id("email"));
+        public IWebElement CbxPerfil => driver.FindElement(By.Name("rights_id"));
+        public IWebElement CbxLocalizacao => driver.FindElement(By.Name("locale"));
+        public IWebElement BtnSalvar => driver.FindElement(By.Name("do_update"));
+        public IWebElement CheckBox => driver.FindElement(By.Name("user_is_active"));
         public IWebElement VerPerfil => driver.FindElement(By.LinkText("Ver Perfis"));
         public IWebElement BtnCriarPerfil => driver.FindElement(By.Name("doCreate"));
         public IWebElement TxtNomePerfil => driver.FindElement(By.Name("rolename"));
@@ -43,24 +43,27 @@ namespace ProjetoTestLinkBase2.PageObjects
         {
             SeleniumUteis uteis = new SeleniumUteis();
 
-            string searchText;
-            string CSVFilePath = @"C:\Repositório de projetos\ProjetoMantisBase2\ProjetoMantisBase2\DDT Arquivos\Teste.csv";
+            string Nome,Login,Sobrenome,Senha,Email;
+            string CSVFilePath = @"C:\Repositório de projetos\ProjetoTestLinkBase2\ProjetoTestLinkBase2\TestData\Teste.csv";
             DataTable objDT;
             objDT = ProjetoTestLinkBase2.Uteis.CSVData.GetCSVData(CSVFilePath);
-            uteis.ClicaBotao(abaUsuarios);
+            uteis.ClicaBotao(AbaUsuarios);
             foreach (DataRow objDR in objDT.Rows)
             {
-                searchText = objDR["searchText"].ToString();
-                string nome = searchText;
-                uteis.ClicaBotao(btnCriar);
-                uteis.preencheCampoInput(txtLogin, nome);
-                uteis.preencheCampoInput(txtNome, nome);
-                uteis.preencheCampoInput(txtSobrenome, nome);
-                uteis.preencheCampoInput(txtSenha, nome);
-                uteis.preencheCampoInput(txtEmail, SeleniumUteis.GerarEmail(nome));
-                uteis.CBClick(cbxPerfil, "tester");
-                uteis.CBClick(cbxLocalizacao, "Portuguese (Brazil)");
-                uteis.ClicaBotao(btnSalvar);
+                Login = objDR["Login"].ToString();
+                Nome = objDR["Nome"].ToString();
+                Sobrenome = objDR["Sobrenome"].ToString();
+                Senha = objDR["Senha"].ToString();
+                Email = objDR["Email"].ToString();
+                uteis.ClicaBotao(BtnCriar);
+                uteis.preencheCampoInput(TxtLogin, Login);
+                uteis.preencheCampoInput(TxtNome, Nome);
+                uteis.preencheCampoInput(TxtSobrenome, Sobrenome);
+                uteis.preencheCampoInput(TxtSenha, Senha);
+                uteis.preencheCampoInput(TxtEmail, Email);
+                uteis.CBClick(CbxPerfil, "tester");
+                uteis.CBClick(CbxLocalizacao, "Portuguese (Brazil)");
+                uteis.ClicaBotao(BtnSalvar);
 
             }
             
@@ -71,16 +74,16 @@ namespace ProjetoTestLinkBase2.PageObjects
             SeleniumUteis uteis = new SeleniumUteis();
             string nome = SeleniumUteis.GerarNome();
 
-            uteis.ClicaBotao(abaUsuarios);
-            uteis.ClicaBotao(btnCriar);
-            uteis.preencheCampoInput(txtLogin,nome);
-            uteis.preencheCampoInput(txtNome,nome);
-            uteis.preencheCampoInput(txtSobrenome,nome);
-            uteis.preencheCampoInput(txtSenha,nome);
-            uteis.preencheCampoInput(txtEmail,SeleniumUteis.GerarEmail(nome));
-            uteis.CBClick(cbxPerfil, "tester");
-            uteis.CBClick(cbxLocalizacao, "Portuguese (Brazil)");
-            uteis.ClicaBotao(btnSalvar);
+            uteis.ClicaBotao(AbaUsuarios);
+            uteis.ClicaBotao(BtnCriar);
+            uteis.preencheCampoInput(TxtLogin,nome);
+            uteis.preencheCampoInput(TxtNome,nome);
+            uteis.preencheCampoInput(TxtSobrenome,nome);
+            uteis.preencheCampoInput(TxtSenha,nome);
+            uteis.preencheCampoInput(TxtEmail,SeleniumUteis.GerarEmail(nome));
+            uteis.CBClick(CbxPerfil, "tester");
+            uteis.CBClick(CbxLocalizacao, "Portuguese (Brazil)");
+            uteis.ClicaBotao(BtnSalvar);
 
         }
 
@@ -88,16 +91,16 @@ namespace ProjetoTestLinkBase2.PageObjects
         {
             SeleniumUteis uteis = new SeleniumUteis();
 
-            uteis.ClicaBotao(abaUsuarios);
-            uteis.ClicaBotao(btnCriar);
-            uteis.preencheCampoInput(txtLogin, nome);
-            uteis.preencheCampoInput(txtNome, nome);
-            uteis.preencheCampoInput(txtSobrenome, nome);
-            uteis.preencheCampoInput(txtSenha, nome);
-            uteis.preencheCampoInput(txtEmail, SeleniumUteis.GerarEmail(nome));
-            uteis.CBClick(cbxPerfil, "tester");
-            uteis.CBClick(cbxLocalizacao, "Portuguese (Brazil)");
-            uteis.ClicaBotao(btnSalvar);
+            uteis.ClicaBotao(AbaUsuarios);
+            uteis.ClicaBotao(BtnCriar);
+            uteis.preencheCampoInput(TxtLogin, nome);
+            uteis.preencheCampoInput(TxtNome, nome);
+            uteis.preencheCampoInput(TxtSobrenome, nome);
+            uteis.preencheCampoInput(TxtSenha, nome);
+            uteis.preencheCampoInput(TxtEmail, SeleniumUteis.GerarEmail(nome));
+            uteis.CBClick(CbxPerfil, "tester");
+            uteis.CBClick(CbxLocalizacao, "Portuguese (Brazil)");
+            uteis.ClicaBotao(BtnSalvar);
             return nome;
 
         }
@@ -106,17 +109,17 @@ namespace ProjetoTestLinkBase2.PageObjects
             SeleniumUteis uteis = new SeleniumUteis();
             string nome = SeleniumUteis.GerarNome();
 
-            uteis.ClicaBotao(abaUsuarios);
-            uteis.ClicaBotao(btnCriar);
-            uteis.preencheCampoInput(txtLogin, nome);
-            uteis.preencheCampoInput(txtNome, nome);
-            uteis.preencheCampoInput(txtSobrenome, nome);
-            uteis.preencheCampoInput(txtSenha, nome);
-            uteis.preencheCampoInput(txtEmail, SeleniumUteis.GerarEmail(nome));
-            uteis.CBClick(cbxPerfil, "tester");
-            uteis.CBClick(cbxLocalizacao, "Portuguese (Brazil)");
-            uteis.ClicaBotao(checkBox);
-            uteis.ClicaBotao(btnSalvar);
+            uteis.ClicaBotao(AbaUsuarios);
+            uteis.ClicaBotao(BtnCriar);
+            uteis.preencheCampoInput(TxtLogin, nome);
+            uteis.preencheCampoInput(TxtNome, nome);
+            uteis.preencheCampoInput(TxtSobrenome, nome);
+            uteis.preencheCampoInput(TxtSenha, nome);
+            uteis.preencheCampoInput(TxtEmail, SeleniumUteis.GerarEmail(nome));
+            uteis.CBClick(CbxPerfil, "tester");
+            uteis.CBClick(CbxLocalizacao, "Portuguese (Brazil)");
+            uteis.ClicaBotao(CheckBox);
+            uteis.ClicaBotao(BtnSalvar);
 
         }
 
@@ -139,8 +142,8 @@ namespace ProjetoTestLinkBase2.PageObjects
             uteis.clicaBotaoSim("Sim", "ext-comp-1035");
             Assert.AreEqual("Usuário " + nome + " foi desabilitado com sucesso", driver.FindElement(By.CssSelector("p")).Text);
             uteis.ClicaBotao(driver.FindElement(By.LinkText(nome)));
-            uteis.ClicaBotao(checkBox);
-            uteis.ClicaBotao(btnSalvar);
+            uteis.ClicaBotao(CheckBox);
+            uteis.ClicaBotao(BtnSalvar);
             uteis.VerificarElementoTabela(nome);
 
         }

@@ -49,7 +49,7 @@ namespace ProjetoTestLinkBase2
                         break;
                     case ("opera"):
                         OperaOptions opera = new OperaOptions();
-
+                        opera.BinaryLocation = "@"+ ConfigurationManager.AppSettings["OperaLocal"].ToString();
 
                         driver = new RemoteWebDriver(new Uri(nodeURL), opera.ToCapabilities());
                         break;
