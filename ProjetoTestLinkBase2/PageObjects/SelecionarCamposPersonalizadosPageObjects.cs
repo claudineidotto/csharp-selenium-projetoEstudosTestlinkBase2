@@ -23,7 +23,7 @@ namespace ProjetoTestLinkBase2.PageObjects
 
         public void  AtribuirCamposPersonalizados(string nome){
             SeleniumUteis uteis = new SeleniumUteis();
-            uteis.selecionaCheckBox(nome,"free_cf");
+            uteis.SelecionaCheckBox(nome,"free_cf");
             uteis.ClicaBotao(btnAtribuir);
             uteis.VerificarElementoTabela(nome, "assigned_cf");
         }
@@ -31,7 +31,7 @@ namespace ProjetoTestLinkBase2.PageObjects
         {
             SeleniumUteis uteis = new SeleniumUteis();
             AtribuirCamposPersonalizados(nome);
-            uteis.selecionaCheckBox(nome, "assigned_cf");
+            uteis.SelecionaCheckBox(nome, "assigned_cf");
             uteis.ClicaBotao(btnNaoAtribuir);
             uteis.VerificarElementoTabela(nome, "free_cf");
 

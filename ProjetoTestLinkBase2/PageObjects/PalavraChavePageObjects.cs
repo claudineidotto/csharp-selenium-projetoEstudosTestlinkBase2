@@ -18,7 +18,7 @@ namespace ProjetoTestLinkBase2.PageObjects
         public IWebElement TxtPalavraChave => driver.FindElement(By.Name("keyword"));
         public IWebElement TxtDescricao => driver.FindElement(By.Name("notes"));
         public IWebElement BtnSalvar => driver.FindElement(By.Name("create_req"));
-
+        public IWebElement BtnDeletarSim => driver.FindElement(By.Name(" ext-gen20"));    
         #endregion
 
         public void CriarPalavraChave()
@@ -26,8 +26,8 @@ namespace ProjetoTestLinkBase2.PageObjects
             SeleniumUteis uteis = new SeleniumUteis();
             uteis.ClicaBotao(BtnPalavraChave);
             string palavrachave = SeleniumUteis.GerarPalavraChave();
-            uteis.preencheCampoInput(TxtPalavraChave, palavrachave);
-            uteis.preencheCampoInput(TxtDescricao, palavrachave);
+            uteis.PreencheCampoInput(TxtPalavraChave, palavrachave);
+            uteis.PreencheCampoInput(TxtDescricao, palavrachave);
             uteis.ClicaBotao(BtnSalvar);
             Assert.AreEqual(palavrachave, driver.FindElement(By.LinkText(palavrachave)).Text);
         }
@@ -36,9 +36,8 @@ namespace ProjetoTestLinkBase2.PageObjects
         {
             SeleniumUteis uteis = new SeleniumUteis();
             uteis.ClicaBotao(BtnPalavraChave);
-            
-            uteis.preencheCampoInput(TxtPalavraChave, palavrachave);
-            uteis.preencheCampoInput(TxtDescricao, palavrachave);
+            uteis.PreencheCampoInput(TxtPalavraChave, palavrachave);
+            uteis.PreencheCampoInput(TxtDescricao, palavrachave);
             uteis.ClicaBotao(BtnSalvar);
             Assert.AreEqual(palavrachave, driver.FindElement(By.LinkText(palavrachave)).Text);
         }
@@ -47,10 +46,9 @@ namespace ProjetoTestLinkBase2.PageObjects
             string palavrachave = SeleniumUteis.GerarPalavraChave();
             SeleniumUteis uteis = new SeleniumUteis();
             CriarPalavraChave(palavrachave);
-            uteis.clicaPosicaoTabela(palavrachave, 2);
-            uteis.clicaBotaoSim("Sim", "ext-comp-1005");
-            Assert.AreEqual(null, uteis.confirmaExclusaoTabela(palavrachave));
-
+            uteis.ClicaPosicaoTabela(palavrachave, 2);
+            uteis.ClicaBotao(BtnDeletarSim);
+            Assert.AreEqual(null, uteis.ConfirmaExclusaoTabela(palavrachave));
         }
 
 

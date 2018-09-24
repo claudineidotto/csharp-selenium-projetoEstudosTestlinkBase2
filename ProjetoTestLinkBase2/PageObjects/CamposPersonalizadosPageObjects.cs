@@ -38,12 +38,12 @@ namespace ProjetoTestLinkBase2.PageObjects
             uteis.ClicaBotao(criarCamposP);
             string nome= SeleniumUteis.GerarNome();
             string rotulo = SeleniumUteis.GerarRotulo();
-            uteis.preencheCampoInput(txt_nome, nome);
-            uteis.preencheCampoInput(txt_rotulo, rotulo);
-            uteis.selecionaRandomicoComboBox(CboxDisponivel);
-            uteis.selecionaRandomicoComboBox(CboxTipo);
+            uteis.PreencheCampoInput(txt_nome, nome);
+            uteis.PreencheCampoInput(txt_rotulo, rotulo);
+            uteis.SelecionaRandomicoComboBox(CboxDisponivel);
+            uteis.SelecionaRandomicoComboBox(CboxTipo);
             uteis.ClicaBotao(btnAdicionar);
-            uteis.verificaNomeTabela(nome);
+            uteis.VerificaNomeTabela(nome);
         }
         public string criarCamposPersonalizados(String nome)
         {
@@ -51,12 +51,12 @@ namespace ProjetoTestLinkBase2.PageObjects
             uteis.EsperaElemento(criarCamposP);
             uteis.ClicaBotao(criarCamposP);
             string rotulo = SeleniumUteis.GerarRotulo();
-            uteis.preencheCampoInput(txt_nome, nome);
-            uteis.preencheCampoInput(txt_rotulo, rotulo);
-            uteis.selecionaRandomicoComboBox(CboxDisponivel);
-            uteis.selecionaRandomicoComboBox(CboxTipo);
+            uteis.PreencheCampoInput(txt_nome, nome);
+            uteis.PreencheCampoInput(txt_rotulo, rotulo);
+            uteis.SelecionaRandomicoComboBox(CboxDisponivel);
+            uteis.SelecionaRandomicoComboBox(CboxTipo);
             uteis.ClicaBotao(btnAdicionar);
-            uteis.verificaNomeTabela(nome);
+            uteis.VerificaNomeTabela(nome);
             return nome;
         }
         public void deletarCamposPersonalizados()
@@ -67,7 +67,7 @@ namespace ProjetoTestLinkBase2.PageObjects
             uteis.ClicaBotao(driver.FindElement(By.LinkText(nome)));
             uteis.ClicaBotao(btnDelete);
             uteis.ClicaBotao(btnCofirmarDelete);
-            Assert.AreEqual(null, uteis.confirmaExclusaoTabela(nome));
+            Assert.AreEqual(null, uteis.ConfirmaExclusaoTabela(nome));
 
         }
 
@@ -79,8 +79,8 @@ namespace ProjetoTestLinkBase2.PageObjects
             uteis.ClicaBotao(driver.FindElement(By.LinkText(nome)));
             string novonome = SeleniumUteis.GerarNome();
             string novorotulo = SeleniumUteis.GerarRotulo();
-            uteis.preencheCampoInput(txt_nome, novonome);
-            uteis.preencheCampoInput(txt_rotulo, novorotulo);
+            uteis.PreencheCampoInput(txt_nome, novonome);
+            uteis.PreencheCampoInput(txt_rotulo, novorotulo);
             uteis.ClicaBotao(BtnAtualizar);
             Assert.AreEqual(novonome, driver.FindElement(By.LinkText(novonome)).Text.Trim());
 

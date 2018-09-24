@@ -59,20 +59,15 @@ namespace ProjetoTestLinkBase2
                 driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
                 driver.Navigate().GoToUrl("http://testlink.claudinei.base2.com.br/login.php");
                 driver.Manage().Window.Maximize();
-
-
-            }     //fim void
-
+           }    
         }
-    
-
+ 
         [TearDown]
         public void TearDown()
         {
             driver.Dispose();
             driver.Quit();
             driver = null;
-        }//fim void
-         
+        }         
     }
 }

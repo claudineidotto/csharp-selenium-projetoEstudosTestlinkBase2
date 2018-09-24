@@ -12,7 +12,7 @@ namespace ProjetoTestLinkBase2.Uteis
     class SeleniumUteis : WebDriver
     {
         
-        public void preencheCampoInput(IWebElement elemento,String valor ){
+        public void PreencheCampoInput(IWebElement elemento,String valor ){
             //espera elemento
             //limpa o elemento 
             //preenche o elemento 
@@ -22,7 +22,7 @@ namespace ProjetoTestLinkBase2.Uteis
             elemento.SendKeys(valor);
           }
 
-        public void preencheId(IWebElement elemento)
+        public void PreencheId(IWebElement elemento)
         {
             //espera elemento
             //limpa o elemento 
@@ -44,7 +44,6 @@ namespace ProjetoTestLinkBase2.Uteis
             elemento.Click();
         }
        
-
         public void EsperaElemento(IWebElement elemento) {
             WebDriverWait espera = new WebDriverWait(WebDriver.driver, TimeSpan.FromSeconds(10));
             espera.Until(ExpectedConditions.ElementToBeClickable(elemento));
@@ -74,11 +73,11 @@ namespace ProjetoTestLinkBase2.Uteis
             return "Rotulo" + randomInt;
         }
 
-        public  void  verificaNomeTabela( string nome)
+        public  void  VerificaNomeTabela( string nome)
         {
             SeleniumUteis uteis = new SeleniumUteis();
             WebDriverWait espera = new WebDriverWait(WebDriver.driver, TimeSpan.FromSeconds(20));
-           espera.Until(ExpectedConditions.ElementIsVisible(By.TagName("tbody")));
+            espera.Until(ExpectedConditions.ElementIsVisible(By.TagName("tbody")));
             var tabela = driver.FindElement(By.TagName("tbody"));
                 foreach (var tr in tabela.FindElements(By.TagName("tr")))
                 {
@@ -90,13 +89,12 @@ namespace ProjetoTestLinkBase2.Uteis
                            Assert.AreEqual(nome, tds[i].Text.Trim());
                            return;   
                         }
-                    }//fim for 1
-
-                }//fim foreach
+                    }
+                }
             Assert.Fail();        
         }
 
-        public void clicaPosicaoTabela(String nome, int val)
+        public void ClicaPosicaoTabela(String nome, int val)
         {
             SeleniumUteis uteis = new SeleniumUteis();
             WebDriverWait espera = new WebDriverWait(WebDriver.driver, TimeSpan.FromSeconds(20));
@@ -110,12 +108,10 @@ namespace ProjetoTestLinkBase2.Uteis
                     tds[val].Click();
                     return;
                 }
-                //fim for 1
-
-            }//fim foreach
+            }
             Assert.Fail();
         }
-        public int verificarQuantidadesLinhas()
+        public int VerificarQuantidadesLinhas()
         {
             SeleniumUteis uteis = new SeleniumUteis();
             WebDriverWait espera = new WebDriverWait(WebDriver.driver, TimeSpan.FromSeconds(20));
@@ -125,13 +121,11 @@ namespace ProjetoTestLinkBase2.Uteis
             foreach (var tr in tabela.FindElements(By.TagName("tr")))
             {
                 count = count + 1;
-
-
-            }//fim foreach
+            }
             return count;
         }
 
-        public void verificaNomesFiltro(string nome)
+        public void VerificaNomesFiltro(string nome)
         {
             SeleniumUteis uteis = new SeleniumUteis();
             WebDriverWait espera = new WebDriverWait(WebDriver.driver, TimeSpan.FromSeconds(20));
@@ -143,36 +137,25 @@ namespace ProjetoTestLinkBase2.Uteis
                 if (nome.Trim().Contains(tds[0].Text))
                 {
                     Assert.AreEqual(nome, tds[0].Text.Trim());
-
                 }
                 else Assert.Fail();
-               
-
-            }//fim foreach
-            
+            }          
         }
 
-        public string selecionaRandomicoComboBox(IWebElement elemento)
+        public string SelecionaRandomicoComboBox(IWebElement elemento)
         {
                 WebDriverWait espera = new WebDriverWait(WebDriver.driver, TimeSpan.FromSeconds(20));
-
                 espera.Until(ExpectedConditions.ElementToBeClickable(elemento));
-
                 Random random = new Random();
                 SelectElement selector = new SelectElement(elemento);
                 IList<IWebElement> options = selector.Options;
                 int aux = options.Count;
-
-            int r = 1;//random.Next(1, aux);
+                int r = 1;//random.Next(1, aux);
                 new SelectElement(elemento).SelectByText(options[r].Text.Trim());
-
                 return options[r].Text.Trim();
-        }//fim void
+        }
 
-
-       
-
-        public String confirmaExclusaoTabela(string nome)
+        public String ConfirmaExclusaoTabela(string nome)
         {
             SeleniumUteis uteis = new SeleniumUteis();
             WebDriverWait espera = new WebDriverWait(WebDriver.driver, TimeSpan.FromSeconds(20));
@@ -204,40 +187,9 @@ namespace ProjetoTestLinkBase2.Uteis
             iwebelement.Click();
         }
 
-        public void desabilitarUsuario(String nome) {
-            WebDriverWait espera = new WebDriverWait(WebDriver.driver, TimeSpan.FromSeconds(20));
-            espera.Until(ExpectedConditions.ElementIsVisible(By.Id("ext-gen19")));
-            var tabela = driver.FindElement(By.Id("ext-gen19"));
-
-            foreach (var table in tabela.FindElements(By.TagName("table")))
-            {
-
-                var tds = table.FindElements(By.TagName("td"));
-                if (tds[0].Text.Equals(nome))
-                {
-                   var td = tds[7].FindElement(By.TagName("img"));
-                    td.Click();
-                    return;
-                }
-            }
-        }
-        public void clicaBotaoSim(String valor,string ID)
-        {
-            WebDriverWait espera = new WebDriverWait(WebDriver.driver, TimeSpan.FromSeconds(20));
-            espera.Until(ExpectedConditions.ElementIsVisible(By.Id(ID)));
-            var tabela = driver.FindElement(By.Id(ID));
-
-            foreach (var botao in tabela.FindElements(By.TagName("button")))
-            {
-                             
-                if (botao.Text.Equals(valor))
-                {
-                   botao.Click();
-                    return;
-                }
-            }
-        }
-        public void selecionaCheckBox(String valor, String ID)
+       
+        
+        public void SelecionaCheckBox(String valor, String ID)
         {
             WebDriverWait espera = new WebDriverWait(WebDriver.driver, TimeSpan.FromSeconds(20));
             espera.Until(ExpectedConditions.ElementIsVisible(By.Id(ID)));
@@ -303,26 +255,6 @@ namespace ProjetoTestLinkBase2.Uteis
                 }
             }
         }
-        /*public void VerificarOrdemCrescente() {
-
-            List<string> lista = new List<string> { };
-
-            WebDriverWait espera = new WebDriverWait(WebDriver.driver, TimeSpan.FromSeconds(20));
-            espera.Until(ExpectedConditions.ElementIsVisible(By.TagName("tbody")));
-            var tabela = driver.FindElement(By.TagName("tbody"));
-            foreach (var tbody in tabela.FindElements(By.TagName("tbody")))
-            {
-                foreach (var tr in tbody.FindElements(By.TagName("tr")))
-                {
-                    var tds = tr.FindElements(By.TagName("td"));
-                    lista.Add(tds[0].Text);
-                }
-
-            }
-
-            
-        }*/
-
     }
 }
 

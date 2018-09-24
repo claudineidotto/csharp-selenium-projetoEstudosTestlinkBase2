@@ -28,7 +28,7 @@ namespace ProjetoTestLinkBase2.PageObjects
             SeleniumUteis uteis = new SeleniumUteis();
             string nome = SeleniumUteis.GerarNome();
             uteis.ClicaBotao(BtnCriar);
-            uteis.preencheCampoInput(TxtNome, nome);
+            uteis.PreencheCampoInput(TxtNome, nome);
             uteis.ClicaBotao(BtnCriarFinal);
             Assert.AreEqual(nome, driver.FindElement(By.LinkText(nome)).Text);
         }
@@ -38,7 +38,7 @@ namespace ProjetoTestLinkBase2.PageObjects
             SeleniumUteis uteis = new SeleniumUteis();
             string nome = SeleniumUteis.GerarNome();
             uteis.ClicaBotao(BtnCriar);
-            uteis.preencheCampoInput(TxtNome, nome);
+            uteis.PreencheCampoInput(TxtNome, nome);
             uteis.ClicaBotao(CbxAtivo);
             uteis.ClicaBotao(BtnCriarFinal);
             Assert.AreEqual(nome, driver.FindElement(By.LinkText(nome)).Text);
@@ -48,7 +48,7 @@ namespace ProjetoTestLinkBase2.PageObjects
         {
             SeleniumUteis uteis = new SeleniumUteis();
             uteis.ClicaBotao(BtnCriar);
-            uteis.preencheCampoInput(TxtNome, nome);
+            uteis.PreencheCampoInput(TxtNome, nome);
             Thread.Sleep(100);
             uteis.ClicaBotao(BtnCriarFinal);
             Assert.AreEqual(nome, driver.FindElement(By.LinkText(nome)).Text);
@@ -57,7 +57,7 @@ namespace ProjetoTestLinkBase2.PageObjects
         {
             SeleniumUteis uteis = new SeleniumUteis();
             uteis.ClicaBotao(BtnCriar);
-            uteis.preencheCampoInput(TxtNome, nome);
+            uteis.PreencheCampoInput(TxtNome, nome);
             uteis.ClicaBotao(CbxAtivo);
             Thread.Sleep(100);
             uteis.ClicaBotao(BtnCriarFinal);
@@ -71,7 +71,7 @@ namespace ProjetoTestLinkBase2.PageObjects
             CriarPlanoTesteInativo(nome);
             uteis.ClicaBotao(driver.FindElement(By.LinkText(nome)));
             string novonome = SeleniumUteis.GerarNome();
-            uteis.preencheCampoInput(TxtNome, novonome);
+            uteis.PreencheCampoInput(TxtNome, novonome);
             uteis.ClicaBotao(BtnAtualizar);
             Assert.AreEqual(novonome, driver.FindElement(By.LinkText(novonome)).Text.Trim());
         }
@@ -80,7 +80,7 @@ namespace ProjetoTestLinkBase2.PageObjects
             SeleniumUteis uteis = new SeleniumUteis();
             string nome = SeleniumUteis.GerarNome();
             CriarPlanoTesteInativo(nome);
-            uteis.clicaPosicaoTabela(nome, 5);
+            uteis.ClicaPosicaoTabela(nome, 5);
             Assert.AreEqual("Active (click to set inactive)", VerificarStatus(nome));
         }
         public void DesativarPlanoTeste()
@@ -88,7 +88,7 @@ namespace ProjetoTestLinkBase2.PageObjects
             SeleniumUteis uteis = new SeleniumUteis();
             string nome = SeleniumUteis.GerarNome();
             CriarPlanoTesteAtivo(nome);
-            uteis.clicaPosicaoTabela(nome, 5);
+            uteis.ClicaPosicaoTabela(nome, 5);
             Assert.AreEqual("Inactive (click to set active)",VerificarStatus(nome));       
         }
 
@@ -119,7 +119,7 @@ namespace ProjetoTestLinkBase2.PageObjects
             CriarPlanoTesteAtivo(nome);
             ExcluirPlanoTeste(nome);
             uteis.ClicaBotao(BtnDeletarSim);
-            Assert.AreEqual(null, uteis.confirmaExclusaoTabela(nome));
+            Assert.AreEqual(null, uteis.ConfirmaExclusaoTabela(nome));
         }
 
         public void ExcluirPlanoTeste(string nome) {

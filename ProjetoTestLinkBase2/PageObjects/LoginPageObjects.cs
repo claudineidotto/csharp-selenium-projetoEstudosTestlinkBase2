@@ -30,8 +30,8 @@ namespace ProjetoTestLinkBase2.PageObjects
         SeleniumUteis uteis = new SeleniumUteis();
 
         public void realizalogin(string username, string password) {
-            uteis.preencheCampoInput(TxtLogin, username);
-            uteis.preencheCampoInput(txtPassword, password);
+            uteis.PreencheCampoInput(TxtLogin, username);
+            uteis.PreencheCampoInput(txtPassword, password);
             uteis.ClicaBotao(btnLogin);
         }
         public void VerificaAcessoPaginaLogin()

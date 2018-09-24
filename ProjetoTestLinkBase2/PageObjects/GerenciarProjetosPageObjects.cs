@@ -36,12 +36,12 @@ namespace ProjetoTestLinkBase2.PageObjects
             string nome = SeleniumUteis.GerarNome();
             uteis.ClicaBotao(btnCriar);
             new SelectElement(cbxCriar).SelectByText("Não");
-            uteis.preencheCampoInput(txtnome, nome);
-            uteis.preencheId(idAleatorio);
+            uteis.PreencheCampoInput(txtnome, nome);
+            uteis.PreencheId(idAleatorio);
           //  uteis.preencheCampoInput(txtDescricaoProjeto, nome);
             uteis.ClicaBotao(btnFinalizarCriacao);
             new SelectElement(CbxShow).SelectByText("All");
-            uteis.verificaNomeTabela(nome);
+            uteis.VerificaNomeTabela(nome);
         }
 
         public String CriarProjeto( string nome)
@@ -49,13 +49,13 @@ namespace ProjetoTestLinkBase2.PageObjects
             SeleniumUteis uteis = new SeleniumUteis();
             uteis.ClicaBotao(btnCriar);
             new SelectElement(cbxCriar).SelectByText("Não");
-            uteis.preencheCampoInput(txtnome, nome);
-            uteis.preencheId(idAleatorio);
+            uteis.PreencheCampoInput(txtnome, nome);
+            uteis.PreencheId(idAleatorio);
             //  uteis.preencheCampoInput(txtDescricaoProjeto, nome);
             uteis.ClicaBotao(btnFinalizarCriacao);
             new SelectElement(CbxShow).SelectByText("All");
 
-            uteis.verificaNomeTabela(nome);
+            uteis.VerificaNomeTabela(nome);
 
             return nome;
         }
@@ -65,10 +65,10 @@ namespace ProjetoTestLinkBase2.PageObjects
             SeleniumUteis uteis = new SeleniumUteis();
             string nome = SeleniumUteis.GerarNome();
             nome = CriarProjeto(nome);
-            uteis.preencheCampoInput(campoFiltro, nome);
+            uteis.PreencheCampoInput(campoFiltro, nome);
             uteis.ClicaBotao(btnFiltrar);
             new SelectElement(CbxShow).SelectByText("All");
-            uteis.verificaNomesFiltro(nome);
+            uteis.VerificaNomesFiltro(nome);
         }
 
         public void ResetarfiltroProjeto()
@@ -77,24 +77,24 @@ namespace ProjetoTestLinkBase2.PageObjects
             string nome = SeleniumUteis.GerarNome();
             int count;
             nome = CriarProjeto(nome);
-            count = uteis.verificarQuantidadesLinhas();
-            uteis.preencheCampoInput(campoFiltro, nome);
+            count = uteis.VerificarQuantidadesLinhas();
+            uteis.PreencheCampoInput(campoFiltro, nome);
             uteis.ClicaBotao(btnFiltrar);
             new SelectElement(CbxShow).SelectByText("All");
-            uteis.verificaNomesFiltro(nome);
+            uteis.VerificaNomesFiltro(nome);
             uteis.ClicaBotao (btnResetFilter);
             new SelectElement(CbxShow).SelectByText("All");
-            Assert.AreEqual(count, uteis.verificarQuantidadesLinhas());
+            Assert.AreEqual(count, uteis.VerificarQuantidadesLinhas());
         }
         public void DeletarProjetoTeste()
         {
             SeleniumUteis uteis = new SeleniumUteis();
             string nome = SeleniumUteis.GerarNome();
             nome = CriarProjeto(nome);
-            uteis.clicaPosicaoTabela(nome,7);
+            uteis.ClicaPosicaoTabela(nome,7);
             uteis.ClicaBotao(btnSim);
             new SelectElement(CbxShow).SelectByText("All");
-            Assert.AreEqual(null, uteis.confirmaExclusaoTabela(nome));
+            Assert.AreEqual(null, uteis.ConfirmaExclusaoTabela(nome));
         }
 
         
@@ -104,7 +104,7 @@ namespace ProjetoTestLinkBase2.PageObjects
             SeleniumUteis uteis = new SeleniumUteis();
             string nome = SeleniumUteis.GerarNome();
             nome = CriarProjeto(nome);
-            uteis.clicaPosicaoTabela(nome,5);
+            uteis.ClicaPosicaoTabela(nome,5);
 //            Assert.AreEqual(null, uteis.confirmaExclusaoTabela(nome));
         }
 
@@ -113,7 +113,7 @@ namespace ProjetoTestLinkBase2.PageObjects
             SeleniumUteis uteis = new SeleniumUteis();
             string nome = SeleniumUteis.GerarNome();
             nome = CriarProjeto(nome);
-            uteis.clicaPosicaoTabela(nome, 5);
+            uteis.ClicaPosicaoTabela(nome, 5);
             //            Assert.AreEqual(null, uteis.confirmaExclusaoTabela(nome));
             return retorno = nome;
         }
@@ -124,7 +124,7 @@ namespace ProjetoTestLinkBase2.PageObjects
             String nome = null;
             nome = DesativarProjetoTeste(nome);
             
-            uteis.clicaPosicaoTabela(nome, 5);
+            uteis.ClicaPosicaoTabela(nome, 5);
                      
         }
         public void DesativarRequisitosProjetoTeste()
@@ -132,9 +132,9 @@ namespace ProjetoTestLinkBase2.PageObjects
             SeleniumUteis uteis = new SeleniumUteis();
             string nome = SeleniumUteis.GerarNome();
             nome = CriarProjeto(nome);
-            uteis.clicaPosicaoTabela(nome, 4);
+            uteis.ClicaPosicaoTabela(nome, 4);
             new SelectElement(CbxShow).SelectByText("All");
-            uteis.clicaPosicaoTabela(nome, 4);
+            uteis.ClicaPosicaoTabela(nome, 4);
             //Assert.AreEqual(null, uteis.confirmaExclusaoTabela(nome));
             
         }
@@ -144,7 +144,7 @@ namespace ProjetoTestLinkBase2.PageObjects
             SeleniumUteis uteis = new SeleniumUteis();
             string nome = SeleniumUteis.GerarNome();
             nome = CriarProjeto(nome);
-            uteis.clicaPosicaoTabela(nome, 4);
+            uteis.ClicaPosicaoTabela(nome, 4);
                       
         }
 

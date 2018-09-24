@@ -31,29 +31,29 @@ namespace ProjetoTestLinkBase2.PageObjects
             string titulo = SeleniumUteis.GerarNome();
             uteis.EsperaElemento(BtnCriar);
             uteis.ClicaBotao(BtnCriar);
-            uteis.preencheCampoInput(TxtTitulo, titulo);
+            uteis.PreencheCampoInput(TxtTitulo, titulo);
             uteis.EsperaElemento(BtnCriarFinalizar);
             uteis.ClicaBotao(BtnCriarFinalizar);
-            uteis.verificaNomeTabela(titulo);
+            uteis.VerificaNomeTabela(titulo);
         }
         public void CriarBaseline(string titulo)
         {
             SeleniumUteis uteis = new SeleniumUteis();
             uteis.EsperaElemento(BtnCriar);
             uteis.ClicaBotao(BtnCriar);
-            uteis.preencheCampoInput(TxtTitulo, titulo);
+            uteis.PreencheCampoInput(TxtTitulo, titulo);
             uteis.EsperaElemento(BtnCriarFinalizar);
             uteis.ClicaBotao(BtnCriarFinalizar);
-            uteis.verificaNomeTabela(titulo);
+            uteis.VerificaNomeTabela(titulo);
         }
         public void DeletarBaseline()
         {
             SeleniumUteis uteis = new SeleniumUteis();
             string titulo = SeleniumUteis.GerarNome();
             CriarBaseline(titulo);
-            uteis.clicaPosicaoTabela(titulo, 5);
+            uteis.ClicaPosicaoTabela(titulo, 5);
             uteis.ClicaBotao(BtnExcluirSim);
-            Assert.AreEqual(null, uteis.confirmaExclusaoTabela(titulo));
+            Assert.AreEqual(null, uteis.ConfirmaExclusaoTabela(titulo));
 
         }
 
@@ -64,7 +64,7 @@ namespace ProjetoTestLinkBase2.PageObjects
             CriarBaseline(titulo);
             uteis.ClicaBotao(driver.FindElement(By.LinkText(titulo)));
             string novonome = SeleniumUteis.GerarNome();
-            uteis.preencheCampoInput(TxtTitulo, novonome);
+            uteis.PreencheCampoInput(TxtTitulo, novonome);
             uteis.ClicaBotao(BtnAtualizar);
             Assert.AreEqual(novonome, driver.FindElement(By.LinkText(novonome)).Text.Trim());
 

@@ -34,23 +34,23 @@ namespace ProjetoTestLinkBase2.PageObjects
             SeleniumUteis uteis = new SeleniumUteis();
             string nome = SeleniumUteis.GerarNome();
             uteis.ClicaBotao(criarGestorFalhas);
-            uteis.preencheCampoInput(nomeGestorFalhas, nome);
-            uteis.selecionaRandomicoComboBox(tipoGestorFalhas);
+            uteis.PreencheCampoInput(nomeGestorFalhas, nome);
+            uteis.SelecionaRandomicoComboBox(tipoGestorFalhas);
             uteis.ClicaBotao(exemplo);
-            uteis.preencheCampoInput(configuracaoTxt, configuracao.Text);
+            uteis.PreencheCampoInput(configuracaoTxt, configuracao.Text);
             uteis.ClicaBotao(btnSalvar);
-            uteis.verificaNomeTabela(nome);
+            uteis.VerificaNomeTabela(nome);
         }
         public void CriarGestorFalhas(string nome)
         {
             SeleniumUteis uteis = new SeleniumUteis();
             uteis.ClicaBotao(criarGestorFalhas);
-            uteis.preencheCampoInput(nomeGestorFalhas, nome);
-            uteis.selecionaRandomicoComboBox(tipoGestorFalhas);
+            uteis.PreencheCampoInput(nomeGestorFalhas, nome);
+            uteis.SelecionaRandomicoComboBox(tipoGestorFalhas);
             uteis.ClicaBotao(exemplo);
-            uteis.preencheCampoInput(configuracaoTxt, configuracao.Text);
+            uteis.PreencheCampoInput(configuracaoTxt, configuracao.Text);
             uteis.ClicaBotao(btnSalvar);
-            uteis.verificaNomeTabela(nome);
+            uteis.VerificaNomeTabela(nome);
         }
         public void VerificarConexao()
         {
@@ -97,7 +97,7 @@ namespace ProjetoTestLinkBase2.PageObjects
             CriarGestorFalhas(nome);
             uteis.ClicaBotao(driver.FindElement(By.LinkText(nome)));
             string novonome = SeleniumUteis.GerarNome();
-            uteis.preencheCampoInput(nomeGestorFalhas, novonome);
+            uteis.PreencheCampoInput(nomeGestorFalhas, novonome);
             uteis.ClicaBotao(btnSalvar);
             Assert.AreEqual(novonome, driver.FindElement(By.LinkText(novonome)).Text.Trim());
 
@@ -108,14 +108,14 @@ namespace ProjetoTestLinkBase2.PageObjects
             SeleniumUteis uteis = new SeleniumUteis();
             string nome = SeleniumUteis.GerarNome();
             uteis.ClicaBotao(criarGestorFalhas);
-            uteis.preencheCampoInput(nomeGestorFalhas, nome);
-            uteis.selecionaRandomicoComboBox(tipoGestorFalhas);
+            uteis.PreencheCampoInput(nomeGestorFalhas, nome);
+            uteis.SelecionaRandomicoComboBox(tipoGestorFalhas);
             uteis.ClicaBotao(exemplo);
-            uteis.preencheCampoInput(configuracaoTxt, configuracao.Text);
+            uteis.PreencheCampoInput(configuracaoTxt, configuracao.Text);
             uteis.ClicaBotao(btnSalvar);
-            uteis.verificaNomeTabela(nome);
+            uteis.VerificaNomeTabela(nome);
             deletaTabelaGestorFalhas(nome);
-            uteis.confirmaExclusaoTabela(nome);
+            uteis.ConfirmaExclusaoTabela(nome);
 
         }
 

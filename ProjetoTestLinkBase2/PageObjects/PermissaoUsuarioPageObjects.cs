@@ -36,6 +36,7 @@ namespace ProjetoTestLinkBase2.PageObjects
         public IWebElement CheckBoxCriar => driver.FindElement(By.Name("grant[mgt_testplan_create]"));
         public IWebElement BtnSalvarPerfil => driver.FindElement(By.Name("role_mgmt"));
         public IWebElement BtnSim => driver.FindElement(By.Id("ext-gen20"));
+        public IWebElement BtnDesabilitarSim => driver.FindElement(By.Id("ext-gen56")); 
 
         #endregion
 
@@ -56,11 +57,11 @@ namespace ProjetoTestLinkBase2.PageObjects
                 Senha = objDR["Senha"].ToString();
                 Email = objDR["Email"].ToString();
                 uteis.ClicaBotao(BtnCriar);
-                uteis.preencheCampoInput(TxtLogin, Login);
-                uteis.preencheCampoInput(TxtNome, Nome);
-                uteis.preencheCampoInput(TxtSobrenome, Sobrenome);
-                uteis.preencheCampoInput(TxtSenha, Senha);
-                uteis.preencheCampoInput(TxtEmail, Email);
+                uteis.PreencheCampoInput(TxtLogin, Login);
+                uteis.PreencheCampoInput(TxtNome, Nome);
+                uteis.PreencheCampoInput(TxtSobrenome, Sobrenome);
+                uteis.PreencheCampoInput(TxtSenha, Senha);
+                uteis.PreencheCampoInput(TxtEmail, Email);
                 uteis.CBClick(CbxPerfil, "tester");
                 uteis.CBClick(CbxLocalizacao, "Portuguese (Brazil)");
                 uteis.ClicaBotao(BtnSalvar);
@@ -76,32 +77,32 @@ namespace ProjetoTestLinkBase2.PageObjects
 
             uteis.ClicaBotao(AbaUsuarios);
             uteis.ClicaBotao(BtnCriar);
-            uteis.preencheCampoInput(TxtLogin,nome);
-            uteis.preencheCampoInput(TxtNome,nome);
-            uteis.preencheCampoInput(TxtSobrenome,nome);
-            uteis.preencheCampoInput(TxtSenha,nome);
-            uteis.preencheCampoInput(TxtEmail,SeleniumUteis.GerarEmail(nome));
+            uteis.PreencheCampoInput(TxtLogin,nome);
+            uteis.PreencheCampoInput(TxtNome,nome);
+            uteis.PreencheCampoInput(TxtSobrenome,nome);
+            uteis.PreencheCampoInput(TxtSenha,nome);
+            uteis.PreencheCampoInput(TxtEmail,SeleniumUteis.GerarEmail(nome));
             uteis.CBClick(CbxPerfil, "tester");
             uteis.CBClick(CbxLocalizacao, "Portuguese (Brazil)");
             uteis.ClicaBotao(BtnSalvar);
 
         }
 
-        public string CriarUsuarioTesterAtivo( string nome)
+        public void CriarUsuarioTesterAtivo( string nome)
         {
             SeleniumUteis uteis = new SeleniumUteis();
 
             uteis.ClicaBotao(AbaUsuarios);
             uteis.ClicaBotao(BtnCriar);
-            uteis.preencheCampoInput(TxtLogin, nome);
-            uteis.preencheCampoInput(TxtNome, nome);
-            uteis.preencheCampoInput(TxtSobrenome, nome);
-            uteis.preencheCampoInput(TxtSenha, nome);
-            uteis.preencheCampoInput(TxtEmail, SeleniumUteis.GerarEmail(nome));
+            uteis.PreencheCampoInput(TxtLogin, nome);
+            uteis.PreencheCampoInput(TxtNome, nome);
+            uteis.PreencheCampoInput(TxtSobrenome, nome);
+            uteis.PreencheCampoInput(TxtSenha, nome);
+            uteis.PreencheCampoInput(TxtEmail, SeleniumUteis.GerarEmail(nome));
             uteis.CBClick(CbxPerfil, "tester");
             uteis.CBClick(CbxLocalizacao, "Portuguese (Brazil)");
             uteis.ClicaBotao(BtnSalvar);
-            return nome;
+            
 
         }
         public void CriarUsuarioTesterInativo()
@@ -111,11 +112,11 @@ namespace ProjetoTestLinkBase2.PageObjects
 
             uteis.ClicaBotao(AbaUsuarios);
             uteis.ClicaBotao(BtnCriar);
-            uteis.preencheCampoInput(TxtLogin, nome);
-            uteis.preencheCampoInput(TxtNome, nome);
-            uteis.preencheCampoInput(TxtSobrenome, nome);
-            uteis.preencheCampoInput(TxtSenha, nome);
-            uteis.preencheCampoInput(TxtEmail, SeleniumUteis.GerarEmail(nome));
+            uteis.PreencheCampoInput(TxtLogin, nome);
+            uteis.PreencheCampoInput(TxtNome, nome);
+            uteis.PreencheCampoInput(TxtSobrenome, nome);
+            uteis.PreencheCampoInput(TxtSenha, nome);
+            uteis.PreencheCampoInput(TxtEmail, SeleniumUteis.GerarEmail(nome));
             uteis.CBClick(CbxPerfil, "tester");
             uteis.CBClick(CbxLocalizacao, "Portuguese (Brazil)");
             uteis.ClicaBotao(CheckBox);
@@ -127,19 +128,18 @@ namespace ProjetoTestLinkBase2.PageObjects
         {
             SeleniumUteis uteis = new SeleniumUteis();
             string nome = SeleniumUteis.GerarNome();
-            nome =CriarUsuarioTesterAtivo(nome);
-            uteis.desabilitarUsuario(nome);
-            uteis.clicaBotaoSim("Sim", "ext-comp-1035");
+            CriarUsuarioTesterAtivo(nome);
+            DesabilitarUsuario(nome);
+            uteis.ClicaBotao(BtnDesabilitarSim);
             Assert.AreEqual("Usuário "+nome+ " foi desabilitado com sucesso", driver.FindElement(By.CssSelector("p")).Text);
-
         }
         public void AtivarUsuarioDesabilitadoUsuarioTester()
         {
             SeleniumUteis uteis = new SeleniumUteis();
             string nome = SeleniumUteis.GerarNome();
-            nome = CriarUsuarioTesterAtivo(nome);
-            uteis.desabilitarUsuario(nome);
-            uteis.clicaBotaoSim("Sim", "ext-comp-1035");
+            CriarUsuarioTesterAtivo(nome);
+            DesabilitarUsuario(nome);
+            uteis.ClicaBotao(BtnDesabilitarSim);
             Assert.AreEqual("Usuário " + nome + " foi desabilitado com sucesso", driver.FindElement(By.CssSelector("p")).Text);
             uteis.ClicaBotao(driver.FindElement(By.LinkText(nome)));
             uteis.ClicaBotao(CheckBox);
@@ -153,20 +153,20 @@ namespace ProjetoTestLinkBase2.PageObjects
             string nome = SeleniumUteis.GerarNome();
             uteis.ClicaBotao(VerPerfil);
             uteis.ClicaBotao(BtnCriarPerfil);
-            uteis.preencheCampoInput(TxtNomePerfil,nome);
+            uteis.PreencheCampoInput(TxtNomePerfil,nome);
             uteis.ClicaBotao(CheckBoxCriar);
             uteis.ClicaBotao(BtnSalvarPerfil);
-            uteis.verificaNomeTabela(nome);
+            uteis.VerificaNomeTabela(nome);
         }
         public void CriarPerfil( string nome)
         {
             SeleniumUteis uteis = new SeleniumUteis();
             uteis.ClicaBotao(VerPerfil);
             uteis.ClicaBotao(BtnCriarPerfil);
-            uteis.preencheCampoInput(TxtNomePerfil, nome);
+            uteis.PreencheCampoInput(TxtNomePerfil, nome);
             uteis.ClicaBotao(CheckBoxCriar);
             uteis.ClicaBotao(BtnSalvarPerfil);
-            uteis.verificaNomeTabela(nome);
+            uteis.VerificaNomeTabela(nome);
         }
         public void DeletarPerfil()
         {
@@ -174,7 +174,7 @@ namespace ProjetoTestLinkBase2.PageObjects
             string nome = SeleniumUteis.GerarNome();
             CriarPerfil(nome);
             ExcluiPerfil(nome);
-            uteis.confirmaExclusaoTabela(nome);
+            uteis.ConfirmaExclusaoTabela(nome);
 
         }
         public void CriarPerfilSemPermissao()
@@ -183,7 +183,7 @@ namespace ProjetoTestLinkBase2.PageObjects
             string nome = SeleniumUteis.GerarNome();
             uteis.ClicaBotao(VerPerfil);
             uteis.ClicaBotao(BtnCriarPerfil);
-            uteis.preencheCampoInput(TxtNomePerfil, nome);
+            uteis.PreencheCampoInput(TxtNomePerfil, nome);
             uteis.ClicaBotao(BtnSalvarPerfil);
             Assert.AreEqual("Você não pode gravar regras sem nenhuma permissão!", driver.FindElement(By.Id("ext-gen28")).Text);
 
@@ -209,6 +209,27 @@ namespace ProjetoTestLinkBase2.PageObjects
 
                 }//fim foreach
             
+        }
+
+        public void DesabilitarUsuario(String nome)
+        {
+            WebDriverWait espera = new WebDriverWait(WebDriver.driver, TimeSpan.FromSeconds(20));
+            espera.Until(ExpectedConditions.ElementIsVisible(By.Id("ext-gen19")));
+            var tabela = driver.FindElement(By.Id("ext-gen19"));
+
+            foreach (var table in tabela.FindElements(By.TagName("table")))
+            {
+                var tr = table.FindElements(By.TagName("tr"));
+                if (tr[0].Text.ToString().Contains(nome)) {
+                    var tds = table.FindElements(By.TagName("td"));
+                    if (tds[0].Text.Equals(nome))
+                    {
+                        var td = tds[7].FindElement(By.TagName("img"));
+                        td.Click();
+                        return;
+                    }
+                }
+            }
         }
 
     }
