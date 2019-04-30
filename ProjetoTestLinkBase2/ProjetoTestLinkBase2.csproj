@@ -117,7 +117,6 @@
     <Compile Include="Tests\PalavraChave.cs" />
     <Compile Include="Tests\PermissaoUsuario.cs" />
     <Compile Include="Tests\SelecionarCamposPersonalizados.cs" />
-    <Compile Include="Uteis\CSVData.cs" />
     <Compile Include="Uteis\SeleniumUteis.cs" />
     <Compile Include="Uteis\WebDriver.cs" />
   </ItemGroup>

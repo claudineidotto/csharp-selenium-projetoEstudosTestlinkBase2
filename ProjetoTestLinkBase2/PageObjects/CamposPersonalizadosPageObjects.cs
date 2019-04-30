@@ -29,8 +29,22 @@ namespace ProjetoTestLinkBase2.PageObjects
         public IWebElement btnAdicionar => driver.FindElement(By.CssSelector("input[name=\"do_update\"]"));
         public IWebElement btnLogo => driver.FindElement(By.CssSelector("img[alt=\"Company logo\"]"));
         #endregion
-        
 
+
+        public void criarCamposPersonalizadosDataDriven(string tipo)
+        {
+            SeleniumUteis uteis = new SeleniumUteis();
+            uteis.EsperaElemento(criarCamposP);
+            uteis.ClicaBotao(criarCamposP);
+            string nome = SeleniumUteis.GerarNome();
+            string rotulo = SeleniumUteis.GerarRotulo();
+            uteis.PreencheCampoInput(txt_nome, nome);
+            uteis.PreencheCampoInput(txt_rotulo, rotulo);
+            uteis.SelecionaRandomicoComboBox(CboxDisponivel);
+            uteis.SelecionaRandomicoComboBoxTipo(CboxTipo,tipo);
+            uteis.ClicaBotao(btnAdicionar);
+            uteis.VerificaNomeTabela(nome);
+        }
         public void criarCamposPersonalizados()
         {
             SeleniumUteis uteis = new SeleniumUteis();

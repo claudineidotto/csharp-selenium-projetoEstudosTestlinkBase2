@@ -40,36 +40,9 @@ namespace ProjetoTestLinkBase2.PageObjects
 
         #endregion
 
-        public void CriarUsuarioDDT()
-        {
-            SeleniumUteis uteis = new SeleniumUteis();
 
-            string Nome,Login,Sobrenome,Senha,Email;
-            string CSVFilePath = @"C:\Repositório de projetos\ProjetoTestLinkBase2\ProjetoTestLinkBase2\TestData\Teste.csv";
-            DataTable objDT;
-            objDT = ProjetoTestLinkBase2.Uteis.CSVData.GetCSVData(CSVFilePath);
-            uteis.ClicaBotao(AbaUsuarios);
-            foreach (DataRow objDR in objDT.Rows)
-            {
-                Login = objDR["Login"].ToString();
-                Nome = objDR["Nome"].ToString();
-                Sobrenome = objDR["Sobrenome"].ToString();
-                Senha = objDR["Senha"].ToString();
-                Email = objDR["Email"].ToString();
-                uteis.ClicaBotao(BtnCriar);
-                uteis.PreencheCampoInput(TxtLogin, Login);
-                uteis.PreencheCampoInput(TxtNome, Nome);
-                uteis.PreencheCampoInput(TxtSobrenome, Sobrenome);
-                uteis.PreencheCampoInput(TxtSenha, Senha);
-                uteis.PreencheCampoInput(TxtEmail, Email);
-                uteis.CBClick(CbxPerfil, "tester");
-                uteis.CBClick(CbxLocalizacao, "Portuguese (Brazil)");
-                uteis.ClicaBotao(BtnSalvar);
 
-            }
-            
-
-        }
+      
         public void CriarUsuarioTesterAtivo()
         {
             SeleniumUteis uteis = new SeleniumUteis();
@@ -231,6 +204,9 @@ namespace ProjetoTestLinkBase2.PageObjects
                 }
             }
         }
+
+
+       
 
     }
 }

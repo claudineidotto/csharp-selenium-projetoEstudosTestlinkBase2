@@ -155,6 +155,15 @@ namespace ProjetoTestLinkBase2.Uteis
                 return options[r].Text.Trim();
         }
 
+        public string SelecionaRandomicoComboBoxTipo(IWebElement elemento, String Tipo)
+        {
+            WebDriverWait espera = new WebDriverWait(WebDriver.driver, TimeSpan.FromSeconds(20));
+            espera.Until(ExpectedConditions.ElementToBeClickable(elemento));
+            SelectElement selector = new SelectElement(elemento);
+            new SelectElement(elemento).SelectByText(Tipo);
+            return Tipo;
+        }
+
         public String ConfirmaExclusaoTabela(string nome)
         {
             SeleniumUteis uteis = new SeleniumUteis();

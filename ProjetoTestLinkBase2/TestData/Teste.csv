@@ -1,5 +1,12 @@
-Login,Nome,Sobrenome,Senha,Email
-TesteDDT5,Claudinei,Oliveira,123,claudinei.dotto@gmail.com
-TesteDDT6,João,Silva,123,joao.silva@gmail.com
-TesteDDT7,Marcio,Souza,123,marcio.souza@gmail.com
-TesteDDT8,Raul,Dotto,123,raul.dotto@gmail.com
+string              ,S
+numeric             ,S
+float               ,S
+email               ,S
+checkbox            ,S
+list                ,S
+date                ,S
+radio               ,S
+datetime            ,S
+text area           ,S
+script              ,S
+server              ,S     
